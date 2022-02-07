@@ -4,15 +4,18 @@ const session = require("express-session");
 const flash = require("express-flash");
 const { PORT = 8000 } = process.env;
 const router = require("./router");
+const passport = require("./lib/passport");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
-    secret: "Buat ini jadi rahasia",
+    secret: "Ciptowi",
     resave: false,
     saveUninitialized: false,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.use(router);
 
