@@ -32,4 +32,8 @@ module.exports = {
       res.json(format(user));
     });
   },
+  profile: (req, res) => {
+    const currentUser = req.User;
+    res.json(currentUser);
+  },
 };

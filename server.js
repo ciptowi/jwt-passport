@@ -5,11 +5,13 @@ const flash = require("express-flash");
 const { PORT = 8000 } = process.env;
 const router = require("./router");
 const passport = require("./lib/passport");
+const bodyParser = require("body-parser");
 
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(
   session({
-    secret: "Ciptowi",
+    secret: "rahasia cipto",
     resave: false,
     saveUninitialized: false,
   })

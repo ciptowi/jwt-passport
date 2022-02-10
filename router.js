@@ -13,5 +13,6 @@ router.get("/loginjwt", (req, res) => res.render("loginjwt"));
 router.get("/registerjwt", (req, res) => res.render("registerjwt"));
 router.post("/api/v1/auth/register", auth.register);
 router.post("/api/v1/auth/login", auth.loginJwt);
+router.get("/api/v1/auth/profile", restrict, auth.profile);
 
 module.exports = router;
