@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-  </head>
+  <%- include('partials/head') %>
   <body style="text-align: center">
     <% if (messages.error) { %>
     <h5><%= messages.error %></h5>
     <% } %>
 
-    <h3>FORM LOGIN</h3>
-    <br />
-    <form method="POST" action="/login">
-      <label for="username">Username</label>
-      <br />
-      <input type="text" name="username" placeholder="Insert your username" />
-      <br />
-      <label for="password">Password</label>
-      <br />
-      <input
-        type="password"
-        name="password"
-        placeholder="Insert your password"
-      />
-      <br />
-      <button type="submit">Login</button>
-      <br />
-      <p>Don't have an account yet?</p>
-      <a href="/register">Register Now</a>
-    </form>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="card col-4">
+          <div class="card-header text-center font-weight-bold">FORM LOGIN</div>
+          <div class="card-body">
+            <form method="POST" action="/login">
+              <div class="form-group">
+                <label for="username">Username :</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Password :</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-danger">Clear</button>
+              </div>
+            </form>
+            <div class="mt-4">
+              <h6>Don't have an account yet?</h6>
+              <a href="/register">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

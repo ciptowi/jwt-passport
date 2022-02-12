@@ -4,10 +4,12 @@ const session = require("express-session");
 const flash = require("express-flash");
 const { PORT = 8000 } = process.env;
 const router = require("./router");
-const passport = require("./lib/passport");
+const passport = require("./lib/authPassport");
+const jwtPassport = require("./lib/jwtPassport");
 const bodyParser = require("body-parser");
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(
   session({
@@ -17,6 +19,7 @@ app.use(
   })
 );
 app.use(passport.initialize());
+app.use(jwtPassport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(router);

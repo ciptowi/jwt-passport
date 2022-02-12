@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const passport = require("./lib/passport");
 const auth = require("./controllers/authController");
-const restrict = require("./middlewares/restrict");
+const jwt = require("./controllers/jwtController");
+const authRestrict = require("./middlewares/authRestrict");
+const jwtRestrict = require("./middlewares/jwtRestrict");
 
-router.get("/", restrict, auth.index);
+router.get("/", authRestrict, auth.index);
 router.get("/register", auth.formRegister);
 router.get("/login", auth.formLogin);
 router.post("/register", auth.register);
 router.post("/login", auth.login);
+router.get("/logout", auth.logout);
 
-router.get("/loginjwt", (req, res) => res.render("loginjwt"));
-router.get("/registerjwt", (req, res) => res.render("registerjwt"));
-router.post("/api/v1/auth/register", auth.register);
-router.post("/api/v1/auth/login", auth.loginJwt);
-router.get("/api/v1/auth/profile", restrict, auth.profile);
+router.post("/api/v1/auth/register", jwt.register);
+router.post("/api/v1/auth/login", jwt.login);
+router.get("/api/v1/auth/profile", jwtRestrict, jwt.profile);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const passport = require("../lib/passport");
+const passport = require("../lib/authPassport");
 
 function format(user) {
   const { id, username } = user;
@@ -26,14 +26,8 @@ module.exports = {
     failureRedirect: "/login",
     failureFlash: true,
   }),
-
-  loginJwt: (req, res) => {
-    User.authenticate(req.body).then((user) => {
-      res.json(format(user));
-    });
-  },
-  profile: (req, res) => {
-    const currentUser = req.User;
-    res.json(currentUser);
+  logout: (req, res) => {
+    res.cookie("connect.sid", "", { maxAge: 1 });
+    res.render("login");
   },
 };
