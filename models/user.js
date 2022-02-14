@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.UserHistory);
     }
     static #encrypt = (password) => bcrypt.hashSync(password, 10);
 

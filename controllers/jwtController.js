@@ -18,10 +18,16 @@ module.exports = {
       })
       .catch((err) => next(err));
   },
-  login: (req, res) => {
-    User.authenticate(req.body).then((user) => {
-      res.json(format(user));
-    });
+  login: async (req, res) => {
+    try {
+      User.authenticate(req.body).then((user) => {
+        // const token = format(user).accessToken;
+        // res.header("authorization", token).render("index", { user });
+        res.render("index", user);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   },
   profile: (req, res) => {
     const currentUser = req.user;

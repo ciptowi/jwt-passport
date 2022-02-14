@@ -2,13 +2,13 @@
 <html lang="en">
   <%- include('partials/head') %>
   <body style="text-align: center">
-    <% if (messages.error) { %>
-    <h5><%= messages.error %></h5>
+    <% if (messages.length > 0) { %>
+    <h5><%= messages %></h5>
     <% } %>
 
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="card col-4">
+        <div class="card col-lg-4">
           <div class="card-header text-center font-weight-bold">FORM LOGIN</div>
           <div class="card-body">
             <form method="POST" action="/login">
