@@ -4,13 +4,14 @@ const session = require("express-session");
 const flash = require("express-flash");
 const { PORT = 8000 } = process.env;
 const router = require("./router");
-const passport = require("./lib/authPassport");
-const jwtPassport = require("./lib/jwtPassport");
+const passport = require("./lib/passport");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(
   session({
     secret: "rahasia cipto",
@@ -19,7 +20,6 @@ app.use(
   })
 );
 app.use(passport.initialize());
-app.use(jwtPassport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(router);

@@ -1,18 +1,18 @@
 const router = require("express").Router();
 const auth = require("./controllers/authController");
-const jwt = require("./controllers/jwtController");
-const authRestrict = require("./middlewares/authRestrict");
-const jwtRestrict = require("./middlewares/jwtRestrict");
+const restrict = require("./middlewares/restrict");
 
-router.get("/", authRestrict, auth.index);
+router.get("/", auth.index);
 router.get("/register", auth.formRegister);
 router.get("/login", auth.formLogin);
-router.post("/register", auth.register);
+
 router.post("/login", auth.login);
+router.post("/register", auth.register);
 router.get("/logout", auth.logout);
 
-router.post("/api/v1/auth/register", jwt.register);
-// router.post("/login", jwt.login);
-router.get("/api/v1/auth/profile", jwtRestrict, jwt.profile);
+router.get("/history", restrict, auth.history);
+router.get("/createroom", restrict, auth.formRoom);
+router.post("/room", restrict, auth.createRoom);
+router.get("/game", restrict, auth.game);
 
 module.exports = router;

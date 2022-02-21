@@ -8,7 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fullname: {
+      UserId: {
+        type: Sequelize.INTEGER
+      },
+      room_name: {
         type: Sequelize.STRING
       },
       have_won: {
@@ -17,7 +20,7 @@ module.exports = {
       have_lost: {
         type: Sequelize.INTEGER
       },
-      UserId: {
+      score: {
         type: Sequelize.INTEGER
       },
       createdAt: {
